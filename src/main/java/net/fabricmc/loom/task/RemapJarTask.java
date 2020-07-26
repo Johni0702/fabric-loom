@@ -78,7 +78,7 @@ public class RemapJarTask extends Jar {
 		MappingsProvider mappingsProvider = extension.getMappingsProvider();
 
 		String fromM = "named";
-		String toM = "intermediary";
+		String toM = "official";
 
 		Set<File> classpathFiles = new LinkedHashSet<>(
 						project.getConfigurations().getByName("compileClasspath").getFiles()
@@ -88,7 +88,7 @@ public class RemapJarTask extends Jar {
 		File mixinMapFile = mappingsProvider.mappingsMixinExport;
 		Path mixinMapPath = mixinMapFile.toPath();
 
-		TinyRemapper.Builder remapperBuilder = TinyRemapper.newRemapper();
+		TinyRemapper.Builder remapperBuilder = TinyRemapper.newRemapper().ignoreConflicts(true);
 
 		remapperBuilder = remapperBuilder.withMappings(TinyRemapperMappingsHelper.create(mappingsProvider.getMappings(), fromM, toM, false));
 

@@ -72,10 +72,10 @@ public abstract class AnnotationProcessorInvoker<T extends Task> {
 		try {
 			LoomGradleExtension extension = project.getExtensions().getByType(LoomGradleExtension.class);
 			Map<String, String> args = new HashMap<String, String>() {{
-					put("inMapFileNamedIntermediary", extension.getMappingsProvider().tinyMappings.getCanonicalPath());
-					put("outMapFileNamedIntermediary", extension.getMappingsProvider().mappingsMixinExport.getCanonicalPath());
+					put("inMapFileNamedOfficial", extension.getMappingsProvider().tinyMappings.getCanonicalPath());
+					put("outMapFileNamedOfficial", extension.getMappingsProvider().mappingsMixinExport.getCanonicalPath());
 					put("outRefMapFile", getRefmapDestination(task, extension));
-					put("defaultObfuscationEnv", "named:intermediary");
+					put("defaultObfuscationEnv", "named:official");
 				}};
 
 			project.getLogger().info("Outputting refmap to dir: " + getDestinationDir(task) + " for compile task: " + task);
